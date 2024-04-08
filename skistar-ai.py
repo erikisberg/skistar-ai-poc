@@ -33,6 +33,7 @@ arrival_dates = st.date_input(
 huvudfokus_semester = st.selectbox('Vad är huvudfokus för er semester?', ["Nöjen och äventyr", "Relax och avslappning", "Äldre människor som vill uppleva Åre", "Romantisk getaway med min partner"])
 submit_button = st.button('Hitta aktiviteter')
 
+
 # POST Request API
 # Lägg till destination som ett argument till funktionen
 def send_post_request(input_text, number_of_people, arrival_dates, huvudfokus_semester, destination):
@@ -57,6 +58,8 @@ def send_post_request(input_text, number_of_people, arrival_dates, huvudfokus_se
     else:
         return "Error in API response" 
 
+
+
 # Button Click
 if submit_button:
     if user_input:
@@ -66,3 +69,22 @@ if submit_button:
         st.write(data_field)
     else:
         st.error("Du måste ju skriva något...")
+
+
+st.divider()
+
+with st.expander("Lista på crawlade sidor"):
+    # Make a GET request to the API
+    response = requests.get("https://api.retool.com/v1/workflows/aedd818d-44fd-4251-9b98-c803ef39c885/startTrigger?workflowApiKey=retool_wk_fd738e3cdc8e4e6b8152932213277fbc")
+
+    # Parse the response as JSON
+    data = response.json()
+
+    # Extract the list of URLs
+    urls = data["data"]
+
+    # Display the URLs in a list
+    for url in urls:
+        st.write(url)
+
+
