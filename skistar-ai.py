@@ -35,7 +35,6 @@ submit_button = st.button('Hitta aktiviteter')
 
 
 # POST Request API
-# Lägg till destination som ett argument till funktionen
 def send_post_request(input_text, number_of_people, arrival_dates, huvudfokus_semester, destination):
     url = "https://api.retool.com/v1/workflows/4ebf4a4f-cbdb-4ca7-8c54-95ee7b0e6d2e/startTrigger?workflowApiKey=retool_wk_b47dc1af998343419cca4543dbafc8a7"
     headers = {'Content-Type': 'application/json'}
@@ -63,7 +62,6 @@ def send_post_request(input_text, number_of_people, arrival_dates, huvudfokus_se
 # Button Click
 if submit_button:
     if user_input:
-        # Lägg till destination som ett argument när du kallar funktionen
         data_field = send_post_request(user_input, number_of_people, arrival_dates, huvudfokus_semester, destination)
         st.write("Response Data:")
         st.write(data_field)
